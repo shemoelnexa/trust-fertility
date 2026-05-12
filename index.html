@@ -62,6 +62,8 @@ h1,h2,h3{font-family:var(--font-head);line-height:1.2;}
 
 /* Hero */
 #hero{position:relative;min-height:100vh;background:#17324b;display:flex;flex-direction:column;overflow:hidden;}
+.hero-bg-photo{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1715433492221-3c51bc1285cb?auto=format&fit=crop&w=1800&q=80');background-size:cover;background-position:center;opacity:1;z-index:0;}
+.hero-bg-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(23,50,75,0.78) 0%,rgba(23,50,75,0.45) 50%,rgba(23,50,75,0.15) 100%);}
 .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.22;}
 .hero-orb-1{width:480px;height:480px;background:var(--pink);top:-100px;right:-80px;}
 .hero-orb-2{width:320px;height:320px;background:var(--beige-warm);bottom:-60px;left:8%;}
@@ -109,7 +111,15 @@ select.form-control{cursor:pointer;}
 
 /* Empathy */
 #empathy{background:linear-gradient(135deg,var(--beige-light),var(--cream));padding:80px 0;}
-.empathy-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.empathy-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;}
+.empathy-inline-quote{margin:22px 0 24px;padding:18px 22px;border-left:3px solid var(--beige);background:rgba(255,255,255,0.5);border-radius:0 12px 12px 0;}
+.empathy-inline-quote p{font-family:var(--font-head);font-style:italic;font-size:16px;color:var(--plum);line-height:1.55;margin-bottom:6px;}
+.empathy-inline-quote .empathy-quote-attr{font-size:12px;color:var(--text-mid);font-weight:500;}
+.empathy-video-col{display:flex;justify-content:center;}
+.empathy-video{width:100%;max-width:420px;position:relative;}
+.empathy-video .instagram-media{margin:0 auto !important;min-width:auto !important;border-radius:18px !important;box-shadow:0 16px 48px rgba(93,74,46,0.18) !important;}
+.empathy-video-clip{position:relative;overflow:hidden;border-radius:18px;min-height:520px;}
+@media(max-width:960px){.empathy-grid{grid-template-columns:1fr;gap:40px;}.empathy-video{max-width:480px;}}
 .empathy-quote-block{position:relative;padding:32px 32px 32px 52px;}
 .empathy-quote-block::before{content:'"';position:absolute;top:0;left:0;font-family:var(--font-head);font-size:110px;line-height:1;color:var(--beige);opacity:0.7;font-style:italic;}
 .empathy-quote-text{font-family:var(--font-head);font-size:clamp(18px,2.2vw,25px);font-style:italic;color:var(--plum);line-height:1.5;margin-bottom:16px;}
@@ -157,6 +167,17 @@ select.form-control{cursor:pointer;}
 .t-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:18px;font-weight:700;flex-shrink:0;}
 .t-name{font-weight:600;font-size:13px;color:var(--white);}
 .t-detail{font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px;}
+
+/* Joy strip */
+#joy-strip{padding:0;background:#17324b;}
+.joy-strip-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.joy-photo{position:relative;height:460px;background-size:cover;background-repeat:no-repeat;overflow:hidden;}
+.joy-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,50,75,0) 65%,rgba(23,50,75,0.35) 100%);}
+.joy-photo-1{background-image:url('https://images.unsplash.com/photo-1608365151231-7dbed3034787?auto=format&fit=crop&w=1000&q=80');background-position:60% 35%;}
+.joy-photo-2{background-image:url('https://images.unsplash.com/photo-1617331140180-e8262094733a?auto=format&fit=crop&w=1000&q=80');background-position:center 18%;}
+.joy-photo-3{background-image:url('https://images.unsplash.com/photo-1649880210584-3365f4c4c08b?auto=format&fit=crop&w=1000&q=80');background-position:center 28%;}
+@media(max-width:960px){.joy-photo{height:380px;}}
+@media(max-width:720px){.joy-strip-inner{grid-template-columns:1fr;}.joy-photo{height:340px;}.joy-photo-1{background-position:60% 30%;}.joy-photo-2{background-position:center 22%;}.joy-photo-3{background-position:center 30%;}}
 
 /* Doctors */
 .doctors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
@@ -314,6 +335,7 @@ footer{background:#0d1f2e;color:rgba(255,255,255,0.6);padding:44px 0 24px;}
 
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-bg-photo"></div>
   <div class="hero-orb hero-orb-1"></div>
   <div class="hero-orb hero-orb-2"></div>
   <div class="hero-topbar">
@@ -338,7 +360,6 @@ footer{background:#0d1f2e;color:rgba(255,255,255,0.6);padding:44px 0 24px;}
         <p class="hero-subtext">At Trust Fertility, you're not just a patient — you're a family we haven't met yet.</p>
         <div class="hero-actions">
           <a href="#hero-form" class="btn btn--gold btn--lg">Start My Journey — Free Consultation</a>
-          <a href="#testimonials" class="btn btn--outline">Real Stories</a>
         </div>
         <div class="hero-trust-bar">
           <span class="hero-trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;stroke-width:2.5;color:#7fc1cf;"><polyline points="20 6 9 17 4 12"/></svg>4,000+ Families</span>
@@ -384,18 +405,26 @@ footer{background:#0d1f2e;color:rgba(255,255,255,0.6);padding:44px 0 24px;}
 <section id="empathy">
   <div class="container">
     <div class="empathy-grid">
-      <div class="empathy-quote-block animate-in">
-        <p class="empathy-quote-text">"After three failed attempts elsewhere, Trust Fertility was the first clinic that made me feel like a person, not a procedure."</p>
-        <div class="empathy-quote-attr">— Fatima A., Abu Dhabi · Mother of twins after IVF</div>
-      </div>
-      <div class="animate-in delay-2">
+      <div class="animate-in">
         <span class="eyebrow">You Are Not Alone</span>
         <h2 class="headline-lg" style="margin-bottom:18px;">We understand how heavy this journey can feel.</h2>
         <p class="empathy-para">1 in 6 couples face fertility challenges — yet so many feel completely alone in it. At Trust Fertility, we don't just treat conditions. <strong>We walk alongside you.</strong></p>
+        <div class="empathy-inline-quote">
+          <p>"After three failed attempts elsewhere, Trust Fertility was the first clinic that made me feel like a person, not a procedure."</p>
+          <div class="empathy-quote-attr">— Fatima A., Abu Dhabi · Mother of twins after IVF</div>
+        </div>
         <p class="empathy-para">Whether this is your first step or you've been on this road for years, you deserve a team that truly believes in your dream.</p>
         <div class="empathy-cta-row">
           <a href="#final-cta" class="btn btn--primary">Begin Your Journey</a>
-          <a href="#testimonials" class="link-arrow">Read real stories →</a>
+        </div>
+      </div>
+      <div class="empathy-video-col animate-in delay-2">
+        <div class="empathy-video">
+          <div class="empathy-video-clip">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWJOtjZjCwo/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:18px;margin:0 auto;max-width:420px;min-width:326px;padding:0;width:100%;">
+              <a href="https://www.instagram.com/p/DWJOtjZjCwo/" target="_blank" rel="noopener" style="background:#FFFFFF;line-height:0;padding:0;text-align:center;text-decoration:none;width:100%;display:block;">View this post on Instagram</a>
+            </blockquote>
+          </div>
         </div>
       </div>
     </div>
@@ -485,11 +514,21 @@ footer{background:#0d1f2e;color:rgba(255,255,255,0.6);padding:44px 0 24px;}
       <h2 class="headline-lg" style="color:var(--white);margin-bottom:12px;">They were once exactly where you are now.</h2>
     </div>
     <div class="testimonials-grid">
-      <div class="t-card animate-in"><div class="t-stars">★★★★★</div><p class="t-text">"After five years and two failed cycles elsewhere, Dr. Al-Sayed said 'I think I know what we can do differently.' Four months later, I was pregnant. Our daughter is two now."</p><div class="t-author"><div class="t-avatar" style="background:rgba(127,193,207,0.2);color:var(--pink);">N</div><div><div class="t-name">Nour & Khalid R.</div><div class="t-detail">Dubai · IVF with PGT</div></div></div></div>
+      <div class="t-card animate-in"><div class="t-stars">★★★★★</div><p class="t-text">"After five years and two failed cycles elsewhere, Dr. Walid Sayed said 'I think I know what we can do differently.' Four months later, I was pregnant. Our daughter is two now."</p><div class="t-author"><div class="t-avatar" style="background:rgba(127,193,207,0.2);color:var(--pink);">N</div><div><div class="t-name">Nour & Khalid R.</div><div class="t-detail">Dubai · IVF with PGT</div></div></div></div>
       <div class="t-card animate-in delay-1"><div class="t-stars">★★★★★</div><p class="t-text">"I was 38 and terrified I'd left it too late. They were honest but genuinely hopeful — and right to be. I'm 6 months pregnant with twins."</p><div class="t-author"><div class="t-avatar" style="background:rgba(164,216,224,0.2);color:var(--peach);">S</div><div><div class="t-name">Sunita M.</div><div class="t-detail">Abu Dhabi · IVF</div></div></div></div>
-      <div class="t-card animate-in delay-2"><div class="t-stars">★★★★★</div><p class="t-text">"My husband felt so ashamed of his diagnosis. Dr. Hassan treated him with such dignity. Thanks to ICSI, we have a beautiful son."</p><div class="t-author"><div class="t-avatar" style="background:rgba(247,146,52,0.2);color:var(--gold);">A</div><div><div class="t-name">Aisha & Omar F.</div><div class="t-detail">Sharjah · ICSI</div></div></div></div>
+      <div class="t-card animate-in delay-2"><div class="t-stars">★★★★★</div><p class="t-text">"My husband felt so ashamed of his diagnosis. Dr. Ahmed Elbohoty treated him with such dignity. Thanks to ICSI, we have a beautiful son."</p><div class="t-author"><div class="t-avatar" style="background:rgba(247,146,52,0.2);color:var(--gold);">A</div><div><div class="t-name">Aisha & Omar F.</div><div class="t-detail">Sharjah · ICSI</div></div></div></div>
     </div>
     <div style="text-align:center;margin-top:32px;"><a href="#final-cta" class="btn btn--outline btn--lg">Their story could be yours too →</a></div>
+  </div>
+</section>
+
+
+<!-- JOY STRIP -->
+<section id="joy-strip">
+  <div class="joy-strip-inner">
+    <div class="joy-photo joy-photo-1" role="img" aria-label="Smiling baby"></div>
+    <div class="joy-photo joy-photo-2" role="img" aria-label="Happy family moment"></div>
+    <div class="joy-photo joy-photo-3" role="img" aria-label="Newborn baby"></div>
   </div>
 </section>
 
@@ -503,24 +542,6 @@ footer{background:#0d1f2e;color:rgba(255,255,255,0.6);padding:44px 0 24px;}
     </div>
     <div class="doctors-grid">
       <div class="doc-card animate-in">
-        <div class="doc-img"><img src="https://trustfertility.com/wp-content/uploads/2025/05/Dr.-Prof.-Ahmed-Elsayed-Hassan-Hamed-Abdelhamid-Elbohoty.png" alt="Prof. Ahmed Elsayed Hassan" loading="lazy"/></div>
-        <div class="doc-info">
-          <div class="doc-name">Prof. Ahmed Elsayed Hassan</div>
-          <div class="doc-spec">Consultant · Reproductive Medicine</div>
-          <div class="doc-quote">Expertise in fertility-enhancing surgery, fertility preservation, endometriosis &amp; adenomyosis.</div>
-          <a href="https://trustfertility.com/doctors/dr-ahmed-elsayed-hassan-hamed-abdelhamid-elbohoty/" class="doc-link" target="_blank" rel="noopener">Know more →</a>
-        </div>
-      </div>
-      <div class="doc-card animate-in delay-1">
-        <div class="doc-img"><img src="https://trustfertility.com/wp-content/uploads/2025/05/Dr.-Ahmad-Allam.png" alt="Dr. Ahmad Allam" loading="lazy"/></div>
-        <div class="doc-info">
-          <div class="doc-name">Dr. Ahmad Allam</div>
-          <div class="doc-spec">Specialist · Urology &amp; Andrology</div>
-          <div class="doc-quote">30+ years of expertise in male infertility and reproductive endocrinology.</div>
-          <a href="https://trustfertility.com/doctors/ahmad-allam/" class="doc-link" target="_blank" rel="noopener">Know more →</a>
-        </div>
-      </div>
-      <div class="doc-card animate-in delay-2">
         <div class="doc-img"><img src="https://trustfertility.com/wp-content/uploads/2025/02/Dr.-Walid-Reda-Sayed.png" alt="Dr. Walid Reda Sayed" loading="lazy"/></div>
         <div class="doc-info">
           <div class="doc-name">Dr. Walid Reda Sayed</div>
@@ -529,22 +550,40 @@ footer{background:#0d1f2e;color:rgba(255,255,255,0.6);padding:44px 0 24px;}
           <a href="https://trustfertility.com/doctors/walid-reda-sayed/" class="doc-link" target="_blank" rel="noopener">Know more →</a>
         </div>
       </div>
-      <div class="doc-card animate-in">
-        <div class="doc-img"><img src="https://trustfertility.com/wp-content/uploads/2025/05/Dr.-Amani-Nemer-Ahmad-Kanan.png" alt="Dr. Amani Nemer Ahmad Kanan" loading="lazy"/></div>
+      <div class="doc-card animate-in delay-1">
+        <div class="doc-img"><img src="https://trustfertility.com/wp-content/uploads/2025/05/Dr.-Prof.-Ahmed-Elsayed-Hassan-Hamed-Abdelhamid-Elbohoty.png" alt="Prof. Ahmed Elbohoty" loading="lazy"/></div>
         <div class="doc-info">
-          <div class="doc-name">Dr. Amani Nemer Ahmad Kanan</div>
-          <div class="doc-spec">Specialist · Obstetrics &amp; Gynecology</div>
-          <div class="doc-quote">20+ years of clinical experience across leading medical institutions in the UAE and Jordan.</div>
-          <a href="https://trustfertility.com/doctors/amani-nemer-ahmad-kanan/" class="doc-link" target="_blank" rel="noopener">Know more →</a>
+          <div class="doc-name">Prof. Ahmed Elbohoty</div>
+          <div class="doc-spec">Consultant · Reproductive Medicine</div>
+          <div class="doc-quote">Expertise in fertility-enhancing surgery, fertility preservation, endometriosis &amp; adenomyosis.</div>
+          <a href="https://trustfertility.com/doctors/dr-ahmed-elsayed-hassan-hamed-abdelhamid-elbohoty/" class="doc-link" target="_blank" rel="noopener">Know more →</a>
         </div>
       </div>
-      <div class="doc-card animate-in delay-1">
+      <div class="doc-card animate-in delay-2">
         <div class="doc-img"><img src="https://trustfertility.com/wp-content/uploads/2025/02/Nayrouz-Gezaf.png" alt="Dr. Nayrouz Gezaf" loading="lazy"/></div>
         <div class="doc-info">
           <div class="doc-name">Dr. Nayrouz Gezaf</div>
           <div class="doc-spec">Specialist · Obstetrics, Gynecology &amp; Infertility</div>
           <div class="doc-quote">17+ years of hands-on experience in women's reproductive health.</div>
           <a href="https://trustfertility.com/doctors/nayrouz-gezaf/" class="doc-link" target="_blank" rel="noopener">Know more →</a>
+        </div>
+      </div>
+      <div class="doc-card animate-in">
+        <div class="doc-img"><img src="https://trustfertility.com/wp-content/uploads/2025/05/Dr.-Ahmad-Allam.png" alt="Dr. Ahmad Allam" loading="lazy"/></div>
+        <div class="doc-info">
+          <div class="doc-name">Dr. Ahmad Allam</div>
+          <div class="doc-spec">Specialist · Urology &amp; Andrology</div>
+          <div class="doc-quote">30+ years of expertise in male infertility and reproductive endocrinology.</div>
+          <a href="https://trustfertility.com/doctors/ahmad-allam/" class="doc-link" target="_blank" rel="noopener">Know more →</a>
+        </div>
+      </div>
+      <div class="doc-card animate-in delay-1">
+        <div class="doc-img"><img src="https://trustfertility.com/wp-content/uploads/2025/05/Dr.-Amani-Nemer-Ahmad-Kanan.png" alt="Dr. Amani Nemer Ahmad Kanan" loading="lazy"/></div>
+        <div class="doc-info">
+          <div class="doc-name">Dr. Amani Nemer Ahmad Kanan</div>
+          <div class="doc-spec">Specialist · Obstetrics &amp; Gynecology</div>
+          <div class="doc-quote">20+ years of clinical experience across leading medical institutions in the UAE and Jordan.</div>
+          <a href="https://trustfertility.com/doctors/amani-nemer-ahmad-kanan/" class="doc-link" target="_blank" rel="noopener">Know more →</a>
         </div>
       </div>
     </div>
@@ -662,7 +701,7 @@ footer{background:#0d1f2e;color:rgba(255,255,255,0.6);padding:44px 0 24px;}
     <div class="footer-inner">
       <div>
         <div class="footer-logo"><img src="trust-logo.png" alt="Trust Fertility" /></div>
-        <div class="footer-tagline">Building families across the UAE for over 30 years. A Life Built on Trust.</div>
+        <div class="footer-tagline">Building families across the UAE. A Life Built on Trust.</div>
       </div>
       <div>
         <div class="footer-col-title">Treatments</div>
@@ -702,6 +741,34 @@ document.querySelectorAll('.animate-in').forEach(el=>obs.observe(el));
 const cObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;const target=parseInt(el.dataset.target);let current=0;const step=target/(1800/16);const timer=setInterval(()=>{current=Math.min(current+step,target);el.textContent=target>=1000?Math.floor(current).toLocaleString():Math.floor(current);if(current>=target)clearInterval(timer);},16);cObs.unobserve(el);});},{threshold:0.5});
 document.querySelectorAll('.count-up').forEach(el=>cObs.observe(el));
 document.querySelectorAll('form').forEach(form=>{form.addEventListener('submit',e=>{e.preventDefault();const btn=form.querySelector('button[type=submit]');btn.textContent="✓ We'll be in touch shortly!";btn.style.background='linear-gradient(135deg,#4ade80,#16a34a)';btn.disabled=true;});});
+</script>
+<script async src="https://www.instagram.com/embed.js"></script>
+<script>
+(function(){
+  const FOOTER_CROP = 145;
+  const MIN_LOADED_HEIGHT = 500;
+  const MIN_CLIP_HEIGHT = 360;
+  const clip = document.querySelector('.empathy-video-clip');
+  if(!clip) return;
+  function apply(){
+    const ifr = clip.querySelector('iframe');
+    if(!ifr) return;
+    const h = ifr.offsetHeight;
+    if(h >= MIN_LOADED_HEIGHT){
+      const target = Math.max(h - FOOTER_CROP, MIN_CLIP_HEIGHT);
+      clip.style.height = target + 'px';
+    }
+  }
+  const ro = new ResizeObserver(apply);
+  const mo = new MutationObserver(()=>{
+    const ifr = clip.querySelector('iframe');
+    if(ifr){ try{ro.observe(ifr);}catch(e){} }
+    apply();
+  });
+  mo.observe(clip,{childList:true,subtree:true,attributes:true,attributeFilter:['style','height']});
+  apply();
+  let n=0; const iv=setInterval(()=>{apply(); if(++n>60)clearInterval(iv);},500);
+})();
 </script>
 </body>
 </html>
